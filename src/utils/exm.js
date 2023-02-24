@@ -13,7 +13,7 @@ export async function getExpiredOrders() {
       await axios.get(`https://api.exm.dev/read/${ANS_CONTRACT_ADDRESS}`)
     )?.data;
     const expiredOrders = state.marketplace.filter(
-      (order) => order.status === "open" && order.expiry < new Date()
+      (order) => order.status === "open" && order.expiry < new Date().getTime()
     );
     console.log(expiredOrders);
     return expiredOrders;
@@ -28,8 +28,7 @@ export async function cancelOrder(order_id) {
     const inputs = [{ function: "cancelOrder", id: order_id }];
 
     const interaction = await exm.functions.write(ANS_CONTRACT_ADDRESS, inputs);
-
-    console.log(`canceled order_id: ${order_id} via ${interaction?.data?.psuedoId}\n`);
+    console.log(`canceled order_id: ${order_id} via ${interaction?.data?.pseudoId}\n`);
   } catch (error) {
     console.log(error);
     throw error;
