@@ -1,6 +1,6 @@
 {
   "name": "ans-cronjob",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "cronjob for ANS marketplace",
   "type": "module",
   "main": "./src/api.js",
