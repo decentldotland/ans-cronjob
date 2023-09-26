@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 
-import { getExpiredOrders, cancelOrder, sleep } from "./utils/exm.js";
+import { getExpiredOrders, cancelOrder, sleep } from "./utils/mem.js";
 
 const app = express();
 
@@ -40,7 +40,7 @@ async function polling() {
         await cancelOrder(order.id);
       }
 
-      await sleep(30);
+      await sleep(15);
     }
   } catch (error) {
     console.log(error);
